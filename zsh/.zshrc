@@ -8,7 +8,7 @@ export ZSH="/home/shiyaam/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="bira"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -108,7 +108,7 @@ source ~/.nvm/nvm.sh
 export PATH=~/softwares/webstorm/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
 #source ~/softwares/webstorm/bin/webstorm.sh
-#eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -117,6 +117,9 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-
+eval "`dircolors ~/.dir_colors/`"
 #path+=('/home/shiyaam/softwares/webstorm/bin/')
 #export PATH
+
+(cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors-tty.sh
