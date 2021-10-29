@@ -107,19 +107,18 @@ source ~/.nvm/nvm.sh
 
 export PATH=~/softwares/webstorm/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
+export PATH=~/nvim:$PATH
 #source ~/softwares/webstorm/bin/webstorm.sh
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
-
+export PATH=~/Downloads/4coder:$PATH
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-eval "`dircolors ~/.dir_colors/`"
 #path+=('/home/shiyaam/softwares/webstorm/bin/')
 #export PATH
 
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
+#(cat ~/.cache/wal/sequences &)
