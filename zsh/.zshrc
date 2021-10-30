@@ -122,3 +122,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 #export PATH
 
 #(cat ~/.cache/wal/sequences &)
+export TERM=xterm-256color
