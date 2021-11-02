@@ -75,13 +75,21 @@ let g:NERDSpaceDelims = 1
 
 
 " keymap stuff
-nnoremap <leader>t <cmd>terminal<cr>
+nnoremap <silent> <C-t> <cmd>terminal<cr>
+inoremap <silent> <C-x> <C-\><C-n> <CR>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fbu <cmd>Telescope buffers<cr>
-nnoremap <leader>fbr <cmd>Telescope file_browser<cr>
+nnoremap <leader>fb <cmd>Telescope file_browser<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" keymap for opening init.vim
+nnoremap <leader>ce :e ~/.config/nvim/init.vim<CR>
+
+
+" buffers
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bl <cmd>Telescope buffers<cr>
 
 " pick color scheme
 nnoremap <Leader>cs <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
@@ -92,7 +100,6 @@ nnoremap <Leader>k <cmd>call nerdcommenter#Comment('n', 'toggle')<CR>
 vnoremap <Leader>k <cmd>call nerdcommenter#Comment('n', 'toggle')<CR>
 
 
-
 nnoremap <silent> K :call CocAction('doHover')<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -101,5 +108,8 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
+
+
+nmap <leader>gs :G<CR>
 let home = expand('~')
 exec 'source' home . '/.config/nvim/coc.vim'

@@ -104,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 alias ls="exa -al --color=always --group-directories-first"
 export NVM_DIR=~/.nvm
 source ~/.nvm/nvm.sh
+export NVIMRC=~/.config/nvim/init.vim
 
 export PATH=~/softwares/webstorm/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
