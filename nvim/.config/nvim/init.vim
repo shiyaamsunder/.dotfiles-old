@@ -102,6 +102,7 @@ EOF
 " keymap stuff
 nnoremap <silent> <C-t> <cmd>terminal<cr>
 inoremap <silent> <C-x> <C-\><C-n> <CR>
+
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
