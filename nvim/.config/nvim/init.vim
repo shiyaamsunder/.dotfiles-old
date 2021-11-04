@@ -1,3 +1,10 @@
+" Nice menu when typing `:find *.py`
+set wildmode=longest,list,full
+set wildmenu
+" ignore files
+set wildignore+=**/coverage/*
+set wildignore+=**/node_modules/*
+
 " load plugins
 
 call plug#begin(stdpath('data') . '/vimplugged')
@@ -5,32 +12,58 @@ call plug#begin(stdpath('data') . '/vimplugged')
     Plug 'maxmellon/vim-jsx-pretty'
     Plug 'leafgarland/typescript-vim'
     Plug 'yuezk/vim-js'
+    
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
+
+
     Plug 'tpope/vim-fugitive'
-    Plug 'tomtom/tcomment_vim'
-    Plug 'preservim/nerdcommenter'
+    Plug 'junegunn/gv.vim'
+    Plug 'tpope/vim-rhubarb'
+   
+
     Plug 'pangloss/vim-javascript'
     Plug 'leafgarland/typescript-vim'
     Plug 'peitalin/vim-jsx-typescript'
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-    Plug 'jparise/vim-graphql'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'},
-    Plug 'ThePrimeagen/vim-be-good'
-
+    
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    
+    Plug 'morhetz/gruvbox'
 call plug#end()
+
+set t_Co=256
+syntax on
+set number
+set relativenumber
+set ignorecase      " ignore case
+set smartcase       " but don't ignore it, when search string contains uppercase letters
+set nocompatible
+set incsearch       " do incremental searching
+set visualbell
+set expandtab
+set tabstop=4
+set ruler
+set shiftwidth=4
+set hlsearch
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
 
 " airline stuff
 let g:airline_powerline_fonts = 1 
 set lazyredraw
 
- 
-" colorscheme PaperColor
- 
+
+colorscheme gruvbox 
+highlight Normal     ctermbg=NONE guibg=NONE
+highlight LineNr     ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE
+
 let g:coc_global_extensions = [
     \ 'coc-tsserver',
     \ 'coc-html'
@@ -44,35 +77,27 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
-" basic settings
 
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
-set t_Co=256
-syntax on
-set number
-set relativenumber
-set ignorecase      " ignore case
-set smartcase     " but don't ignore it, when search string contains uppercase letters
-set nocompatible
-set incsearch        " do incremental searching
-set visualbell
-set expandtab
-set tabstop=4
-set ruler
-set smartindent
-set shiftwidth=4
-set hlsearch
-set backspace=indent,eol,start " allow backspacing over everything in insert mode
-set autoindent
-
-
-
-" >> setup nerdcomment key bindings
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
-
-
+"telescope setup
+lua << EOF
+require('telescope').setup{
+defaults = {
+     vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--ignore-file',
+      '.gitignore'
+    }
+    }
+}
+EOF
 
 " keymap stuff
 nnoremap <silent> <C-t> <cmd>terminal<cr>
@@ -95,9 +120,6 @@ nnoremap <leader>bl <cmd>Telescope buffers<cr>
 nnoremap <Leader>cs <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
 " git files
 nnoremap <Leader>f <cmd>lua require'telescope.builtin'.git_files{}<CR>
- 
-nnoremap <Leader>k <cmd>call nerdcommenter#Comment('n', 'toggle')<CR>
-vnoremap <Leader>k <cmd>call nerdcommenter#Comment('n', 'toggle')<CR>
 
 
 nnoremap <silent> K :call CocAction('doHover')<CR>
@@ -109,7 +131,19 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
 
+"Keeping it center
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
 
+"Moving text
+inoremap <C-k> <esc>:m .-2<CR>==
+inoremap <C-j> <esc>:m .+1<CR>==
+nnoremap <leader>j :m .+1<CR>==
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+nnoremap <leader>k :m .-2<CR>==
 nmap <leader>gs :G<CR>
 let home = expand('~')
 exec 'source' home . '/.config/nvim/coc.vim'
