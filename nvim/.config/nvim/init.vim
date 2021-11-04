@@ -19,8 +19,8 @@ call plug#begin(stdpath('data') . '/vimplugged')
     Plug 'peitalin/vim-jsx-typescript'
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
     Plug 'jparise/vim-graphql'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+    Plug 'neoclide/coc.nvim', {'branch': 'release'},
+    Plug 'ThePrimeagen/vim-be-good'
 
 call plug#end()
 
