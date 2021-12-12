@@ -8,14 +8,19 @@ set wildignore+=**/node_modules/*
 " load plugins
 
 call plug#begin(stdpath('data') . '/vimplugged')
+   
+    " Formatters
     Plug 'jiangmiao/auto-pairs'
     Plug 'maxmellon/vim-jsx-pretty'
     Plug 'leafgarland/typescript-vim'
     Plug 'yuezk/vim-js'
     
+
+    " Bottom bar (airline)
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    
+   
+    " Telescope (file browser)
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     
@@ -23,19 +28,27 @@ call plug#begin(stdpath('data') . '/vimplugged')
     Plug 'tpope/vim-unimpaired'
 
 
+    " Git stuff
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/gv.vim'
     Plug 'tpope/vim-rhubarb'
    
 
+    " Coc language servers
     Plug 'pangloss/vim-javascript'
     Plug 'leafgarland/typescript-vim'
     Plug 'peitalin/vim-jsx-typescript'
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
     
+    " Coc for autocompletion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     
+    " Color schemes
     Plug 'morhetz/gruvbox'
+
+    " Markdown preview
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    
 call plug#end()
 
 set t_Co=256
@@ -48,9 +61,9 @@ set nocompatible
 set incsearch       " do incremental searching
 set visualbell
 set expandtab
-set tabstop=4
+set tabstop=2
 set ruler
-set shiftwidth=4
+set shiftwidth=2
 set hlsearch
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 
@@ -80,7 +93,8 @@ endif
 
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
-"telescope setup
+
+" telescope setup
 lua << EOF
 require('telescope').setup{
 defaults = {
@@ -102,6 +116,13 @@ EOF
 " keymap stuff
 nnoremap <silent> <C-t> <cmd>terminal<cr>
 inoremap <silent> <C-x> <C-\><C-n> <CR>
+
+" window splitting
+nnoremap <leader>vs :vs<cr>
+nnoremap <C-q> :q<cr>   "Close current window 
+
+"Markdown preview 
+nmap <C-p> <Plug>MarkdownPreviewToggle
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -136,6 +157,8 @@ nmap <leader>rn <Plug>(coc-rename)
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
+nnoremap <C-d> <C-d>zzzv
+nnoremap <C-b> <C-b>zzzv
 
 "Moving text
 inoremap <C-k> <esc>:m .-2<CR>==
