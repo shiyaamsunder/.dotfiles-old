@@ -131,7 +131,11 @@ nnoremap <leader>fb <cmd>Telescope file_browser<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " keymap for opening init.vim
-nnoremap <leader>ce :e ~/.config/nvim/init.vim<CR>
+if has('linux')
+    nnoremap <leader>ce :e ~/.config/nvim/init.vim<CR>
+elseif has('win32')
+    nnoremap <leader>ce :e ~\AppData\Local\nvim\init.vim<CR>
+endif
 
 
 " buffers
@@ -170,4 +174,9 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>k :m .-2<CR>==
 nmap <leader>gs :G<CR>
 let home = expand('~')
-exec 'source' home . '/.config/nvim/coc.vim'
+
+if has('win-32')
+  exec 'source' home . '~\AppData\Local\nvim\coc.vim'
+elseif has('linux')
+  exec 'source' home . '/.config/nvim/coc.vim'
+end
